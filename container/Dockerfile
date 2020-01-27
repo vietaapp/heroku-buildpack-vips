@@ -48,11 +48,11 @@ RUN cd /usr/src \
 	&& make \
 	&& make install
 
-ARG ORC_VERSION=0.4.28
-ARG ORC_URL=http://cgit.freedesktop.org/gstreamer/orc/snapshot
+ARG ORC_VERSION=0.4.29
+ARG ORC_URL=https://gitlab.freedesktop.org/gstreamer/orc/-/archive/
 
 RUN cd /usr/src \
-	&& wget ${ORC_URL}/orc-$ORC_VERSION.tar.gz \
+	&& wget ${ORC_URL}/$ORC_VERSION/orc-$ORC_VERSION.tar.gz -O orc-${ORC_VERSION}.tar.gz \
 	&& tar xf orc-${ORC_VERSION}.tar.gz \
 	&& cd orc-${ORC_VERSION} \
 	&& ./autogen.sh \
@@ -60,8 +60,8 @@ RUN cd /usr/src \
 	&& make \
 	&& make install
 
-ARG GSF_VERSION=1.14.42
-ARG GSF_URL=http://ftp.gnome.org/pub/GNOME/sources/libgsf
+ARG GSF_VERSION=1.14.46
+ARG GSF_URL=https://ftp.gnome.org/pub/GNOME/sources/libgsf
 
 RUN cd /usr/src \
 	&& wget ${GSF_URL}/${GSF_VERSION%.*}/libgsf-$GSF_VERSION.tar.xz \
