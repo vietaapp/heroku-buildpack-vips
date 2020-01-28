@@ -60,6 +60,16 @@ RUN cd /usr/src \
 	&& make \
 	&& make install
 
+ARG IMAGEMAGICK_VERSION=7.0.9-19
+RUN cd /usr/src \
+	&& wget https://github.com/ImageMagick/ImageMagick/archive/${IMAGEMAGICK_VERSION}.tar.gz -O imagemagick-${IMAGEMAGICK_VERSION}.tar.gz \
+	&& tar xf imagemagick-${IMAGEMAGICK_VERSION}.tar.gz \
+	&& cd ImageMagick-${IMAGEMAGICK_VERSION} \
+	&& ./configure --prefix=/usr/src/vips --with-gcc-arch \
+	&& make \
+	&& make install
+
+
 ARG GSF_VERSION=1.14.46
 ARG GSF_URL=https://ftp.gnome.org/pub/GNOME/sources/libgsf
 
@@ -78,7 +88,7 @@ RUN cd /usr/src \
 	&& tar xzf vips-${VIPS_VERSION}.tar.gz \
 	&& cd vips-${VIPS_VERSION} \
 	&& export PKG_CONFIG_PATH=/usr/src/vips/lib/pkgconfig \
-	&& ./configure --prefix=/usr/src/vips --disable-gtk-doc \
+	&& ./configure --prefix=/usr/src/vips --disable-gtk-doc --with-modules \
 	&& make \
 	&& make install
 
