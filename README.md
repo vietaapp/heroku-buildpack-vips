@@ -32,10 +32,10 @@ https://github.com/brandoncc/heroku-buildpack-vips
 
 ## Build script
 
-[This](./build.sh) is the script used to build vips using docker.
+[This](./build.sh) is the script used to build vips 8.9.1 using docker.
 
 ```sh
-VIPS_VERSION=x.y.z ./build.sh
+./build.sh
 ```
 
 After building a tar file, it will be copied to the `build` directory. Then you should commit this changes to git.
