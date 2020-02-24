@@ -60,7 +60,7 @@ RUN cd /usr/src \
 	&& make \
 	&& make install
 
-ARG IMAGEMAGICK_VERSION=7.0.9-19
+ARG IMAGEMAGICK_VERSION=7.0.9-25
 RUN cd /usr/src \
 	&& wget https://github.com/ImageMagick/ImageMagick/archive/${IMAGEMAGICK_VERSION}.tar.gz -O imagemagick-${IMAGEMAGICK_VERSION}.tar.gz \
 	&& tar xf imagemagick-${IMAGEMAGICK_VERSION}.tar.gz \
