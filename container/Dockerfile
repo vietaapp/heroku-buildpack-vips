@@ -35,7 +35,9 @@ RUN apt-get update && apt-get install -y \
 	liblcms2-dev \
 	libxml2-dev \
 	libfftw3-dev \
-  libpoppler-glib-dev
+  libpoppler-glib-dev \
+  libx265-dev \
+  libde265-dev
 
 ARG GIFLIB_VERSION=5.1.4
 ARG GIFLIB_URL=http://downloads.sourceforge.net/project/giflib
@@ -60,15 +62,6 @@ RUN cd /usr/src \
 	&& make \
 	&& make install
 
-ARG IMAGEMAGICK_VERSION=7.0.9-25
-RUN cd /usr/src \
-	&& wget https://github.com/ImageMagick/ImageMagick/archive/${IMAGEMAGICK_VERSION}.tar.gz -O imagemagick-${IMAGEMAGICK_VERSION}.tar.gz \
-	&& tar xf imagemagick-${IMAGEMAGICK_VERSION}.tar.gz \
-	&& cd ImageMagick-${IMAGEMAGICK_VERSION} \
-	&& ./configure --prefix=/usr/src/vips --with-gcc-arch \
-	&& make \
-	&& make install
-
 
 ARG GSF_VERSION=1.14.46
 ARG GSF_URL=https://ftp.gnome.org/pub/GNOME/sources/libgsf
@@ -81,15 +74,6 @@ RUN cd /usr/src \
 	&& make \
 	&& make install
 
-
-RUN cd /usr/src \
-  && wget https://github.com/strukturag/libde265/releases/download/v1.0.5/libde265-1.0.5.tar.gz \
-  && tar -xvf libde265-1.0.5.tar.gz \
-  && cd libde265-1.0.5 \
-  && ./autogen.sh \
-  && ./configure --prefix=/usr/src/vips \
-  && make \
-  && make install
 
 ARG LIBHEIF_VERSION=1.6.2
 
@@ -112,6 +96,17 @@ RUN cd /usr/src \
       && ./configure --prefix=/usr/src/vips --enable-libwebpmux --enable-libwebpdemux --enable-libwebpdecoder \
       && make \
       && make install
+
+
+ARG IMAGEMAGICK_VERSION=7.0.9-25
+RUN cd /usr/src \
+	&& wget https://github.com/ImageMagick/ImageMagick/archive/${IMAGEMAGICK_VERSION}.tar.gz -O imagemagick-${IMAGEMAGICK_VERSION}.tar.gz \
+	&& tar xf imagemagick-${IMAGEMAGICK_VERSION}.tar.gz \
+	&& cd ImageMagick-${IMAGEMAGICK_VERSION} \
+	&& ./configure --prefix=/usr/src/vips --with-gcc-arch \
+	&& make \
+	&& make install
+
 
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 
