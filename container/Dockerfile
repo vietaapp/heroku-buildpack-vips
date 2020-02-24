@@ -81,6 +81,16 @@ RUN cd /usr/src \
 	&& make \
 	&& make install
 
+
+RUN cd /usr/src \
+  && wget https://github.com/strukturag/libde265/releases/download/v1.0.5/libde265-1.0.5.tar.gz \
+  && tar -xvf libde265-1.0.5.tar.gz \
+  && cd libde265-1.0.5 \
+  && ./autogen.sh \
+  && ./configure --prefix=/usr/src/vips \
+  && make \
+  && make install
+
 ARG LIBHEIF_VERSION=1.6.2
 
 RUN cd /usr/src \
