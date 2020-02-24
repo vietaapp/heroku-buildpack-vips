@@ -81,6 +81,28 @@ RUN cd /usr/src \
 	&& make \
 	&& make install
 
+ARG LIBHEIF_VERSION=1.6.2
+
+RUN cd /usr/src \
+  && wget https://github.com/strukturag/libheif/releases/download/v$LIBHEIF_VERSION/libheif-$LIBHEIF_VERSION.tar.gz \
+  && tar -xvf libheif-$LIBHEIF_VERSION.tar.gz \
+  && cd libheif-$LIBHEIF_VERSION \
+  && ./autogen.sh \
+  && ./configure --prefix=/usr/src/vips \
+  && make \
+  && make install
+
+ARG WEBP_VERSION=1.1.0
+
+RUN cd /usr/src \
+      && wget https://github.com/webmproject/libwebp/archive/v$WEBP_VERSION.tar.gz \
+      && tar -xvf v$WEBP_VERSION.tar.gz \
+      && cd libwebp-$WEBP_VERSION \
+      && ./autogen.sh \
+      && ./configure --prefix=/usr/src/vips --enable-libwebpmux --enable-libwebpdemux --enable-libwebpdecoder \
+      && make \
+      && make install
+
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 
 RUN cd /usr/src \
