@@ -16,8 +16,7 @@ RUN apt-get update && apt-get install -y \
   unzip \
   wget \
   git \
-  pkg-config \
-  software-properties-common
+  pkg-config
 
 # heroku:18 includes some libraries, like tiff and jpeg, as part of the
 # run-time platform, and we want to use those libs if we can
@@ -25,9 +24,7 @@ RUN apt-get update && apt-get install -y \
 # see https://devcenter.heroku.com/articles/stack-packages
 #
 # libgsf needs libxml2
-RUN add-apt-repository ppa:strukturag/libheif \
-  && add-apt-repository ppa:strukturag/libde265 \
-  && apt-get update \
+RUN apt-get update \
   && apt-get install -y \
 	glib-2.0-dev \
 	libexpat-dev \
@@ -79,7 +76,18 @@ RUN cd /usr/src \
 	&& make install
 
 
-ARG LIBHEIF_VERSION=1.5.1
+# ARG LIBDE265_VERSION=1.0.5
+#
+# RUN cd /usr/src \
+#   && wget https://github.com/strukturag/libde265/releases/download/v${LIBDE265_VERSION}/libde265-${LIBDE265_VERSION}.tar.gz
+#   && tar -xvf libheif-$LIBDE265_VERSION.tar.gz \
+#   && cd libheif-$LIBDE265_VERSION \
+#   && ./autogen.sh \
+#   && ./configure --prefix=/usr/src/vips \
+#   && make \
+#   && make install
+
+ARG LIBHEIF_VERSION=1.6.1
 
 RUN cd /usr/src \
   && wget https://github.com/strukturag/libheif/releases/download/v$LIBHEIF_VERSION/libheif-$LIBHEIF_VERSION.tar.gz \
