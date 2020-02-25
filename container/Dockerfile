@@ -7,16 +7,17 @@ ENV DEBIAN_FRONTEND noninteractive
 # useful build tools ... we need gtk-doc to build orc, since they don't ship
 # pre-baked tarballs
 RUN apt-get update && apt-get install -y \
-	build-essential \
-	autoconf \
-	automake \
-	libtool \
-	intltool \
-	gtk-doc-tools \
-	unzip \
-	wget \
-	git \
-	pkg-config
+  build-essential \
+  autoconf \
+  automake \
+  libtool \
+  intltool \
+  gtk-doc-tools \
+  unzip \
+  wget \
+  git \
+  pkg-config \
+  software-properties-common
 
 # heroku:18 includes some libraries, like tiff and jpeg, as part of the
 # run-time platform, and we want to use those libs if we can
@@ -24,7 +25,10 @@ RUN apt-get update && apt-get install -y \
 # see https://devcenter.heroku.com/articles/stack-packages
 #
 # libgsf needs libxml2
-RUN apt-get update && apt-get install -y \
+RUN add-apt-repository ppa:strukturag/libheif \
+  && add-apt-repository ppa:strukturag/libde265 \
+  && apt-get update \
+  && apt-get install -y \
 	glib-2.0-dev \
 	libexpat-dev \
 	librsvg2-dev \
@@ -75,7 +79,7 @@ RUN cd /usr/src \
 	&& make install
 
 
-ARG LIBHEIF_VERSION=1.1.0
+ARG LIBHEIF_VERSION=1.5.1
 
 RUN cd /usr/src \
   && wget https://github.com/strukturag/libheif/releases/download/v$LIBHEIF_VERSION/libheif-$LIBHEIF_VERSION.tar.gz \
