@@ -87,7 +87,7 @@ RUN cd /usr/src \
 #   && make \
 #   && make install
 
-ARG LIBHEIF_VERSION=1.6.1
+ARG LIBHEIF_VERSION=1.6.2
 
 RUN cd /usr/src \
   && wget https://github.com/strukturag/libheif/releases/download/v$LIBHEIF_VERSION/libheif-$LIBHEIF_VERSION.tar.gz \
