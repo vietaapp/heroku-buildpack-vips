@@ -11,6 +11,15 @@ support via poppler. In order to use this buildpack, you must install these pack
 - libglib2.0-dev
 - libpoppler-glib8
 
+For Heif
+- libx265-146
+- libde265-0
+
+For WebP
+- libwebp6
+- libwebpmux3
+- libwebpdemux2
+
 The easiest way to do this is using the heroku apt buildpack.
 
 This buildpack was put together with the help of John Cupitt, the creator of
