@@ -3,8 +3,8 @@
 # set -x
 set -e
 
-VIPS_VERSION=8.9.1
-docker build --no-cache --build-arg VIPS_VERSION=${VIPS_VERSION} -t libvips-heroku18 container
+VIPS_VERSION=8.10.5
+docker build --no-cache --build-arg VIPS_VERSION=${VIPS_VERSION} -t libvips-heroku20 container
 
 mkdir -p build
 
