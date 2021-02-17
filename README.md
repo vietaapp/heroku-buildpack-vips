@@ -41,7 +41,7 @@ https://github.com/brandoncc/heroku-buildpack-vips
 
 ## Build script
 
-[This](./build.sh) is the script used to build vips 8.9.1 using docker.
+[This](./build.sh) is the script used to build vips 8.10.5 using docker.
 
 ```sh
 ./build.sh
